@@ -258,9 +258,9 @@ const ucapan = async () => {
         .then((res) => {
             if (res !== null && res.length != 0) {
                 UCAPAN.innerHTML = null;
-                // res.forEach((data) => UCAPAN.appendChild(renderCard(data)));
-                for (let index = 0; index < res.length; index++) {
-                    UCAPAN.appendChild(renderCard(res[index]));
+                const lengthShow = pagination.getNext() + pagination.getPer();
+                for (let index = pagination.getNext(); index < (lengthShow > res.length ? res.length : lengthShow); index++) {
+                    UCAPAN.appendChild(renderCard(res[(res.length - 1) - index]));
                 }
                 pagination.setResultData(res.length);
 
@@ -268,16 +268,6 @@ const ucapan = async () => {
                     UCAPAN.innerHTML = `<div class="h6 text-center">Tidak ada data</div>`;
                 }
             }
-
-            // if (res.error.length != 0) {
-            //     if (res.error[0] == 'Expired token') {
-            //         alert('Terdapat kesalahan, token expired !');
-            //         window.location.reload();
-            //         return;
-            //     }
-
-            //     alert(res.error[0]);
-            // }
         })
         .catch((err) => alert(err));
 };
@@ -334,12 +324,12 @@ const kirim = async () => {
         },
         body: JSON.stringify(formData)
     })
-        .then((res) => res.json())
+        // .then((res) => res.json())
         .then((res) => {
-            if (res.result == "success") {
-                resetForm();
-                pagination.reset();
-            }
+            // if (res.result == "success") {
+            resetForm();
+            pagination.reset();
+            // }
         })
         .catch((err) => {
             resetForm();
@@ -499,18 +489,4 @@ setInterval(function () {
     }, 50); // Adjust the delay as needed to ensure smooth transition
 
 }, 3000);
-
-
-const getDataKomentar = () => {
-
-
-    fetch(sheetURL)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
 
