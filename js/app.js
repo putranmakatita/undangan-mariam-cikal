@@ -482,11 +482,11 @@ setInterval(function () {
     const bgKedua = document.getElementsByClassName("bg-kedua");
 
     // Add a slight delay before removing the class
-    setTimeout(() => {
+    // setTimeout(() => {
         bgKedua[0].classList.remove("bg-" + bgState);
         bgState = bgState === 1 ? 2 : 1;
         bgKedua[0].classList.add("bg-" + bgState);
-    }, 50); // Adjust the delay as needed to ensure smooth transition
+    // }, 50); // Adjust the delay as needed to ensure smooth transition
 
 }, 3000);
 
