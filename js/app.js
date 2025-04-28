@@ -477,22 +477,14 @@ window.addEventListener('load', () => {
 
 }, false);
 
-let bgState = 1;
-const bgKedua = document.getElementsByClassName("bg-kedua")[0];
+// let bgState = 1;
+// setInterval(function () {
+//     const bgKedua = document.getElementsByClassName("bg-kedua");
 
-setInterval(function () {
-    // Step 1: Fade out
-    bgKedua.style.opacity = 0;
 
-    // Step 2: After fade-out is complete (500ms), change background
-    setTimeout(() => {
-        bgKedua.classList.remove("bg-" + bgState);
-        bgState = (bgState === 1) ? 2 : 1;
-        bgKedua.classList.add("bg-" + bgState);
+//     bgKedua[0].classList.remove("bg-" + bgState);
+//     bgState = bgState === 1 ? 2 : 1;
+//     bgKedua[0].classList.add("bg-" + bgState);
 
-        // Step 3: Fade back in
-        bgKedua.style.opacity = 1;
-    }, 500); // 500ms to match the CSS transition
-}, 3000);
-
+// }, 3000);
 
