@@ -259,10 +259,11 @@ const ucapan = async () => {
             if (res !== null && res.length != 0) {
                 UCAPAN.innerHTML = null;
                 const lengthShow = pagination.getNext() + pagination.getPer();
-                for (let index = pagination.getNext(); index < (lengthShow > res.length ? res.length : lengthShow); index++) {
+                let batas = lengthShow > res.length ? res.length : lengthShow;
+                for (let index = pagination.getNext(); index < batas; index++) {
                     UCAPAN.appendChild(renderCard(res[(res.length - 1) - index]));
                 }
-                pagination.setResultData(res.length);
+                pagination.setResultData((batas - pagination.getNext()));
 
                 if (res.length == 0) {
                     UCAPAN.innerHTML = `<div class="h6 text-center">Tidak ada data</div>`;
@@ -465,12 +466,20 @@ window.addEventListener('load', () => {
     opacity();
 
     // foto galeri
-    // let listFotoHeader = ["IMG_0863.JPG", "IMG_1018.JPG", "IMG_1019.JPG", "IMG_1020.JPG", "IMG_1013.JPG", "IMG_1014.JPG"];
+    let listFotoHeader = [
+        "1.JPEG",
+        "2.jpg",
+        "3.JPEG",
+        "4.JPEG",
+        "5.HEIC",
+        "6.JPEG",
+        "7.JPEG",
+    ];
     // let listFotoDetail = ["IMG_1017.JPG", "IMG_1008.JPG", "IMG_1009.JPG", "IMG_1010.JPG", "IMG_1011.JPG", "IMG_1021.JPG"];
-    // let folder = "assets/images/";
+    let folder = "assets/Galeri/";
 
     // // header
-    // fotoInject(folder, listFotoHeader, "contFotoHeader", "fotoHeaderIndic", "#carouselExampleIndicators");
+    fotoInject(folder, listFotoHeader, "contFotoHeader", "fotoHeaderIndic", "#carouselExampleIndicators");
 
     // // // detail
     // fotoInject(folder, listFotoDetail, "contFotoDetail", "fotoDetailIndic", "#carousel2");
